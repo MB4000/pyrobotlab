@@ -1,9 +1,10 @@
-arduino = Runtime.start("arduino", "Arduino")
+from java.lang import String
+arduino = Runtime.createAndStart("arduino", "Arduino")
 arduino.connect("COM8") 
-m1 = Runtime.start("m1","Motor")
-arduino.motorAttach("m1", 3, 4)
+m1 = Runtime.createAndStart("m1","Motor")
+m1.attach("COM8", "TYPE_2_PWM", 5, 6);
 
-keyboard = Runtime.start("keyboard", "Keyboard")
+keyboard = Runtime.createAndStart("keyboard", "Keyboard")
 keyboard.addCommand("Links", "python", "Links", "Links")
 keyboard.addCommand("Rechts", "python", "Rechts", "Rechts")
 
@@ -22,3 +23,4 @@ def Rechts(cmd):
     m1.move(-0.8)
     sleep(2)
     m1.stop()
+    
